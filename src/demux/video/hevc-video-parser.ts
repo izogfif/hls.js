@@ -181,7 +181,9 @@ class HevcVideoParser extends BaseVideoParser {
               }
             }
             if (this.initVPS !== null || track.pps.length === 0) {
-              track.pps.push(unit.data);
+              const arrayCopy = new Uint8Array(unit.data.length);
+              arrayCopy.set(unit.data);
+              track.pps.push(arrayCopy);
             }
           }
           break;
